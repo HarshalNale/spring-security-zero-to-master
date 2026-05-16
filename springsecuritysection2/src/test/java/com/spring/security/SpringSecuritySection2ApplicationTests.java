@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Springsecuritysection2ApplicationTests {
+class SpringSecuritySection2ApplicationTests {
 
 	@Test
 	void contextLoads() {
