@@ -31,7 +31,7 @@ public class SecurityConfiguration {
 
         http.formLogin(Customizer.withDefaults());
         http.httpBasic(httpBasicConfigurer -> httpBasicConfigurer.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint()) );
-
+//        http.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint())); // It's a global config
         http.csrf(csrf -> csrf.disable());
         return http.build();
     }
