@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()
-                .requestMatchers("/contact", "/notices", "/register", "/error").permitAll()
+                .requestMatchers("/contact", "/notices", "/register", "/error","/invalidSession").permitAll()
         );
 
         http.formLogin(Customizer.withDefaults());
