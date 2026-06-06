@@ -24,7 +24,7 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) {
-        http.sessionManagement(sm -> sm.invalidSessionUrl("/invalidSession"))
+        http.sessionManagement(sm -> sm.invalidSessionUrl("/invalidSession").maximumSessions(2).maxSessionsPreventsLogin(true))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()

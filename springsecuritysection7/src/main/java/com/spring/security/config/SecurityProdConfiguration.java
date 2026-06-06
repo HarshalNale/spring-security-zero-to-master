@@ -18,7 +18,7 @@ public class SecurityProdConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) {
-        http.sessionManagement(sm -> sm.invalidSessionUrl("/invalidSession"))
+        http.sessionManagement(sm -> sm.invalidSessionUrl("/invalidSession").maximumSessions(1).maxSessionsPreventsLogin(true))
                 .redirectToHttps(Customizer.withDefaults()) // Force HTTPS only requests
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
