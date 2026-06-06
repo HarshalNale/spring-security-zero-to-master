@@ -18,7 +18,8 @@ public class SecurityProdConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) {
-        http.redirectToHttps(Customizer.withDefaults()) // Force HTTPS only requests
+        http.sessionManagement(sm -> sm.invalidSessionUrl("/invalidSession"))
+                .redirectToHttps(Customizer.withDefaults()) // Force HTTPS only requests
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()

@@ -24,7 +24,8 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) {
-        http.csrf(csrf -> csrf.disable())
+        http.sessionManagement(sm -> sm.invalidSessionUrl("/invalidSession"))
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(requests -> requests
                 .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards").authenticated()
                 .requestMatchers("/contact", "/notices", "/register", "/error").permitAll()
