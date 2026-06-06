@@ -1,5 +1,6 @@
 package com.spring.security.config;
 
+import com.spring.security.exception.CustomeBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -24,7 +25,7 @@ public class SecurityProdConfiguration {
                 );
 
         http.formLogin(Customizer.withDefaults());
-        http.httpBasic(Customizer.withDefaults());
+        http.httpBasic(httpBasicConfigurer -> httpBasicConfigurer.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint()) );
 
         http.csrf(csrf -> csrf.disable());
         return http.build();
