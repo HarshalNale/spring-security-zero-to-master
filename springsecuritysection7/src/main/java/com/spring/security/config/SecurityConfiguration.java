@@ -1,5 +1,6 @@
 package com.spring.security.config;
 
+import com.spring.security.exception.CustomeAccessDeniedHandler;
 import com.spring.security.exception.CustomeBasicAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,8 @@ public class SecurityConfiguration {
         http.formLogin(Customizer.withDefaults());
         http.httpBasic(httpBasicConfigurer -> httpBasicConfigurer.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint()) );
 //        http.exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(new CustomeBasicAuthenticationEntryPoint())); // It's a global config
+        http.exceptionHandling(eh -> eh.accessDeniedHandler(new CustomeAccessDeniedHandler()));
+
         http.csrf(csrf -> csrf.disable());
         return http.build();
     }
